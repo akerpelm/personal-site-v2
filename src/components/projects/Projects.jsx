@@ -2,7 +2,11 @@ import React from "react";
 import "./projects.scss";
 
 const Projects = () => {
-  return <div className="projects">Projects</div>;
+  return (
+    <div className="projects" id="projects">
+      Projects
+    </div>
+  );
 };
 
 export default Projects;
