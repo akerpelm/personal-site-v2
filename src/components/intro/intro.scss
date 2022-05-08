@@ -23,6 +23,7 @@
 
   .right {
     flex: 0.5;
+    position: relative;
 
     .wrapper {
       width: 100%;
@@ -31,17 +32,46 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
+      h1 {
+        font-size: 60px;
+        margin: 10px 0;
+      }
+      h2 {
+        font-size: 35px;
+      }
+      h3 {
+        font-size: 30px;
+        span {
+          font-size: inherit;
+          color: crimson;
+        }
+        .ityped-cursor {
+          animation: blink 1s infinite;
+        }
+        @keyframes blink {
+          50% {
+            opacity: 1;
+          }
+          100% {
+            opacity: 0;
+          }
+        }
+      }
     }
+    a {
+      position: absolute;
+      bottom: 10px;
+      left: 40%;
+      img {
+        width: 30px;
+        animation: arrow-blink-effect 2s infinite;
+      }
 
-    h1 {
-      font-size: 60px;
-      margin: 10px 0;
-    }
-    h2 {
-      font-size: 35px;
-    }
-    h3 {
-      font-size: 30px;
+      @keyframes arrow-blink-effect {
+        100% {
+          opacity: 0;
+        }
+      }
     }
   }
 }
