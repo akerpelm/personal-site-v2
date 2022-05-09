@@ -1,8 +1,15 @@
 import React from "react";
-import "../portfolio/portfolio.scss";
+import "../portfolioList/portfolioList.scss";
 
-const PorfolioList = ({ listItem }) => {
-  return <li className={listItem.id}>{listItem.title}</li>;
+const PorfolioList = ({ listItem, active, setSelected }) => {
+  return (
+    <li
+      className={active ? "portfolioList active" : "portfolioList"}
+      onClick={() => setSelected(listItem.id)}
+    >
+      {listItem.title}
+    </li>
+  );
 };
 
 export default PorfolioList;
