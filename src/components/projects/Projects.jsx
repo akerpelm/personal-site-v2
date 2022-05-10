@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import "./projects.scss";
 
 const Projects = () => {
-  const [currentSlide, setCurrentSlide] = useState(0);
+  let [currentSlide, setCurrentSlide] = useState(0);
+
   const data = [
     {
       id: "1",
@@ -28,40 +29,39 @@ const Projects = () => {
   ];
 
   const handleClick = (direction) => {
-    direction === "left"
-      ? setCurrentSlide(currentSlide > 0 ? currentSlide-- : data.length - 1)
-      : setCurrentSlide(currentSlide < data.length - 1 ? currentSlide++ : 0);
+    switch (direction) {
+      case "left":
+        setCurrentSlide(currentSlide > 0 ? currentSlide - 1 : 2);
+      case "right":
+        setCurrentSlide(currentSlide < data.length - 1 ? currentSlide + 1 : 0);
+    }
   };
-
   return (
     <div className="projects" id="projects">
-      {data.map((d) => (
-        <div
-          className="slider"
-          style={{ transform: `translateX(-${currentSlide * 100}vw)` }}
-        >
-          <div className="container">
+      <div
+        className="slider"
+        style={{ transform: `translateX(-${currentSlide * 100}vw)` }}
+      >
+        {data.map(({ title, desc, icon, img }, index) => (
+          <div className="container" key={index}>
             <div className="item">
               <div className="left">
-                <div className="leftContainer">
-                  <div className="imgContainer">
-                    <img src={d.icon} alt="" />
+                <div className="left-container">
+                  <div className="img-container">
+                    <img src={icon} />
                   </div>
-                  <h2>{d.title}</h2>
-                  <p>{d.description}</p>
+                  <h2>{title}</h2>
+                  <p>{desc}</p>
                   <span>Projects</span>
                 </div>
               </div>
               <div className="right">
-                <img
-                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRKvdHn8GmPGCO0y3SJqNHACygpm0h9VycMHg&usqp=CAU"
-                  alt=""
-                />
+                <img src={img} alt="" />
               </div>
             </div>
           </div>
-        </div>
-      ))}
+        ))}
+      </div>
       <img
         src="assets/arrow.png"
         className="arrow left"
